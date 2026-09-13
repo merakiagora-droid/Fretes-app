@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
+    "@react-native-community/cli-platform-android": "13.6.9",
+    "@react-native/gradle-plugin": "0.74.87",
     "@types/node": "^20.14.0",
     "@types/react": "~18.2.79",
     "typescript": "~5.3.3"

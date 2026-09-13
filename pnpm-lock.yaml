@@ -66,6 +66,12 @@ importers:
       '@babel/core':
         specifier: ^7.24.0
         version: 7.29.7
+      '@react-native-community/cli-platform-android':
+        specifier: 13.6.9
+        version: 13.6.9
+      '@react-native/gradle-plugin':
+        specifier: 0.74.87
+        version: 0.74.87
       '@types/node':
         specifier: ^20.14.0
         version: 20.19.43

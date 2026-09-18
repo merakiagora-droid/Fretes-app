@@ -9,9 +9,14 @@ export default function Cadastro() {
   const [msg,setMsg]=useState(''); const router=useRouter();
   async function criar() {
     if (!tipo) return setMsg('Escolha o tipo');
-    const { data, error } = await supabase.auth.signUp({ email, password:senha });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password: senha,
+      options: { data: { tipo, nome, cpf_cnpj: doc } },
+    });
     if (error || !data.user) return setMsg(error?.message ?? 'erro');
-    const { error: e2 } = await supabase.from('users').insert({ id:data.user.id, tipo, nome, email, cpf_cnpj:doc });
+    if (!data.session) return setMsg('Cadastro criado. Confirme seu e-mail para ativar a conta e depois entre no aplicativo.');
+    const { error: e2 } = await supabase.from('users').upsert({ id:data.user.id, tipo, nome, email, cpf_cnpj:doc });
     if (e2) return setMsg(e2.message);
     router.push(tipo==='motorista'?'/onboarding/motorista':'/onboarding/embarcador');
   }

@@ -10,9 +10,16 @@ export default function Cadastro() {
   const router=useRouter();
   async function criar() {
     if (!tipo) return Alert.alert('Escolha o tipo');
-    const { data, error } = await supabase.auth.signUp({ email, password:senha });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password: senha,
+      options: { data: { tipo, nome, cpf_cnpj: doc } },
+    });
     if (error || !data.user) return Alert.alert('Erro', error?.message ?? 'erro');
-    const { error: e2 } = await supabase.from('users').insert({ id:data.user.id, tipo, nome, email, cpf_cnpj:doc });
+    if (!data.session) {
+      return Alert.alert('Cadastro criado', 'Confirme seu e-mail para ativar a conta e depois entre no aplicativo.');
+    }
+    const { error: e2 } = await supabase.from('users').upsert({ id:data.user.id, tipo, nome, email, cpf_cnpj:doc });
     if (e2) return Alert.alert('Erro', e2.message);
     router.replace(tipo==='motorista'?'/onboarding/motorista':'/onboarding/embarcador');
   }

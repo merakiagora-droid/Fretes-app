@@ -29,7 +29,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Localização para modo Zen Drive."
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "extra": {
       "router": {

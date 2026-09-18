@@ -2,11 +2,11 @@ import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
-const configuredKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
-const supabaseKey = configuredKey.startsWith('sb_publishable_')
-  ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqdHBybmhrZHF6YnFycXJva3ZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk3MzAwNzQsImV4cCI6MjEwNTMwNjA3NH0.xDFl9eigtRdjb18glfrmjpQYiHngyCfAIFIoXLTm0_U'
-  : configuredKey;
+// These are Supabase's public client credentials. They must be bundled into
+// native builds so stale or misconfigured CI secrets cannot break registration.
+const supabaseUrl = 'https://rjtprnhkdqzbqrqrokvf.supabase.co';
+const supabaseKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqdHBybmhrZHF6YnFycXJva3ZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk3MzAwNzQsImV4cCI6MjEwNTMwNjA3NH0.xDFl9eigtRdjb18glfrmjpQYiHngyCfAIFIoXLTm0_U';
 
 export const supabase = createClient(
   supabaseUrl,
